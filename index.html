@@ -3,313 +3,145 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>DSA Mastery Roadmap | Green</title>
+    <title>Frequency Array Visualization</title>
     <link rel="preconnect" href="https://fonts.googleapis.com">
-    <link href="https://fonts.googleapis.com/css2?family=Plus+Jakarta+Sans:wght@400;500;600;700;800&display=swap" rel="stylesheet">
+    <link href="https://fonts.googleapis.com/css2?family=Plus+Jakarta+Sans:wght@400;600;800&display=swap" rel="stylesheet">
     <style>
         :root {
             --bg: #f8fafc;
-            --card-bg: #ffffff;
-            /* Green accent colors */
-            --primary: #10b981; /* Emerald Green */
-            --primary-hover: #059669; /* Slightly darker Green for hovers */
-            --primary-light: #ecfdf5; /* Very pale Green for badges */
-            
-            --secondary: #64748b;
-            --text-main: #0f172a;
-            --text-muted: #475569;
-            --shadow: 0 4px 20px rgba(0, 0, 0, 0.04), 0 2px 8px rgba(0, 0, 0, 0.02);
+            --primary: #10b981;
+            --text: #0f172a;
+            --card: #ffffff;
             --border: #e2e8f0;
         }
 
         body {
             font-family: 'Plus Jakarta Sans', sans-serif;
             background-color: var(--bg);
-            color: var(--text-main);
-            margin: 0;
+            color: var(--text);
+            display: flex;
+            justify-content: center;
             padding: 40px 20px;
         }
 
-        .header {
-            text-align: center;
+        .container {
             max-width: 800px;
-            margin: 0 auto 50px;
+            width: 100%;
         }
 
-        h1 {
-            font-size: 2.8rem;
-            font-weight: 800;
-            letter-spacing: -0.03em;
-            margin-bottom: 12px;
-            /* Green gradient title */
-            background: linear-gradient(to right, #047857, #10b981);
-            -webkit-background-clip: text;
-            -webkit-text-fill-color: transparent;
-        }
-
-        .subtitle {
-            color: var(--text-muted);
-            font-size: 1.1rem;
-        }
-
-        .roadmap-grid {
-            display: grid;
-            grid-template-columns: repeat(2, 1fr);
-            gap: 24px;
-            max-width: 1200px;
-            margin: 0 auto;
-        }
-
-        .week-card {
-            background: var(--card-bg);
+        .card {
+            background: var(--card);
             border: 1px solid var(--border);
-            border-radius: 20px;
-            padding: 24px;
-            box-shadow: var(--shadow);
-            display: flex;
-            flex-direction: column;
-            transition: transform 0.2s ease, border-color 0.2s ease;
+            border-radius: 24px;
+            padding: 30px;
+            box-shadow: 0 10px 25px rgba(0,0,0,0.05);
         }
 
-        .week-card:hover {
-            transform: translateY(-4px);
-            border-color: #a7f3d0; /* Soft green border on hover */
+        h2 { font-weight: 800; margin-bottom: 20px; text-align: center; color: var(--primary); }
+
+        .input-section {
+            text-align: center;
+            margin-bottom: 30px;
+            padding-bottom: 20px;
+            border-bottom: 1px solid var(--border);
         }
 
-        .week-badge {
-            background: var(--primary-light);
-            color: var(--primary-hover); /* Using a slightly darker green for readability */
-            font-weight: 700;
-            font-size: 0.7rem;
-            text-transform: uppercase;
-            padding: 4px 12px;
-            border-radius: 100px;
-            width: fit-content;
-            margin-bottom: 12px;
-        }
-
-        .week-title {
+        .input-section span {
             font-size: 1.5rem;
             font-weight: 700;
-            margin-bottom: 15px;
-        }
-
-        .topic-pill {
-            display: inline-block;
+            letter-spacing: 4px;
             background: #f1f5f9;
-            color: var(--secondary);
-            padding: 4px 10px;
-            border-radius: 6px;
-            font-size: 0.75rem;
-            margin: 0 5px 5px 0;
-            font-weight: 500;
-        }
-
-        .problem-list {
-            margin-top: 20px;
-            border-top: 1px solid var(--border);
-            padding-top: 15px;
-        }
-
-        .problem-link {
-            display: flex;
-            justify-content: space-between;
-            align-items: center;
-            text-decoration: none;
-            padding: 12px;
+            padding: 10px 20px;
             border-radius: 12px;
-            margin-bottom: 8px;
-            transition: background 0.2s, border-color 0.2s;
-            border: 1px solid transparent;
         }
 
-        .problem-link:hover {
-            background: #fdfdfd;
-            border-color: var(--primary); /* Green border on problem hover */
+        /* The Frequency Grid */
+        .grid {
+            display: grid;
+            grid-template-columns: repeat(5, 1fr);
+            gap: 15px;
+            margin-bottom: 30px;
         }
 
-        .p-name {
-            font-weight: 600;
-            color: var(--text-main);
-            font-size: 0.95rem;
-            display: block;
-            transition: color 0.2s;
+        .bucket {
+            border: 2px solid var(--border);
+            border-radius: 16px;
+            padding: 15px;
+            text-align: center;
+            transition: all 0.3s;
         }
 
-        .problem-link:hover .p-name {
-            color: var(--primary); /* Green text on problem hover */
+        .bucket.active {
+            border-color: var(--primary);
+            background: #ecfdf5;
         }
 
-        .p-logic {
+        .bucket-label {
             font-size: 0.75rem;
-            color: var(--text-muted);
-            font-style: italic;
-            margin-top: 2px;
+            font-weight: 800;
+            color: var(--primary);
+            margin-bottom: 5px;
+            display: block;
         }
 
-        @media (max-width: 850px) {
-            .roadmap-grid { grid-template-columns: 1fr; }
-            h1 { font-size: 2rem; }
+        .bucket-count {
+            font-size: 1.8rem;
+            font-weight: 700;
+        }
+
+        .logic-box {
+            background: #0f172a;
+            color: #f1f5f9;
+            padding: 20px;
+            border-radius: 16px;
+            font-family: 'Courier New', Courier, monospace;
+            font-size: 0.9rem;
+            line-height: 1.6;
+        }
+
+        .highlight { color: #34d399; font-weight: bold; }
+
+        @media (max-width: 500px) {
+            .grid { grid-template-columns: repeat(2, 1fr); }
         }
     </style>
 </head>
 <body>
 
-<div class="header">
-    <h1>DSA Learning Path</h1>
-    <p class="subtitle">A complete 8-week structured guide for technical interviews.</p>
-</div>
-
-<div class="roadmap-grid" id="roadmap"></div>
-
-<script>
-    const fullData = {
-        "weeks": [
-            {
-                "week": 1,
-                "title": "Arrays & Basic Hashing",
-                "key_topics": ["Prefix Sum", "Two Pointer", "Sliding Window", "HashMap"],
-                "problems": [
-                    { "name": "Two Sum", "url": "https://leetcode.com/problems/two-sum/", "logic_key": "HashMap: Find the complement target - x in O(1) lookup time." },
-                    { "name": "Best Time to Buy and Sell Stock", "url": "https://leetcode.com/problems/best-time-to-buy-and-sell-stock/", "logic_key": "Two Pointer / Greedy: Track minPrice and update maxProfit in one pass." },
-                    { "name": "Kadane's Algorithm", "url": "https://leetcode.com/problems/maximum-subarray/", "logic_key": "Prefix Logic: Decide to extend the subarray or restart." },
-                    { "name": "Subarray Sum Equals K", "url": "https://leetcode.com/problems/subarray-sum-equals-k/", "logic_key": "Prefix Sum + HashMap: Find sub-arrays where prefixSum - k exists." },
-                    { "name": "Longest Substring Without Repeating Characters", "url": "https://leetcode.com/problems/longest-substring-without-repeating-characters/", "logic_key": "Sliding Window + HashMap: Use two pointers and a map for O(n) sliding." },
-                    { "name": "Product of Array Except Self", "url": "https://leetcode.com/problems/product-of-array-except-self/", "logic_key": "Prefix/Suffix: Use two passes to compute products in O(n)." }
-                ]
-            },
-            {
-                "week": 2,
-                "title": "Sorting & Searching",
-                "key_topics": ["Binary Search on Answer", "Custom Sorting", "Search Space"],
-                "problems": [
-                    { "name": "Binary Search", "url": "https://leetcode.com/problems/binary-search/", "logic_key": "Classic: Divide and conquer the sorted search space in O(log n)." },
-                    { "name": "First and Last Position in Sorted Array", "url": "https://leetcode.com/problems/find-first-and-last-position-of-element-in-sorted-array/", "logic_key": "Binary Search: Perform two searches for boundaries." },
-                    { "name": "Search in Rotated Sorted Array", "url": "https://leetcode.com/problems/search-in-rotated-sorted-array/", "logic_key": "Binary Search: Determine which half is sorted." },
-                    { "name": "Aggressive Cows / Allocate Books", "url": "https://www.geeksforgeeks.org/problems/aggressive-cows/1", "logic_key": "Binary Search on Answer: Validate solutions with a greedy check." },
-                    { "name": "Kth Largest Element", "url": "https://leetcode.com/problems/kth-largest-element-in-an-array/", "logic_key": "QuickSelect/Heap: Find element at position (N-k) without full sort." }
-                ]
-            },
-            {
-                "week": 3,
-                "title": "Strings",
-                "key_topics": ["Sliding Window", "HashMap Counting", "Palindromes"],
-                "problems": [
-                    { "name": "Valid Anagram", "url": "https://leetcode.com/problems/valid-anagram/", "logic_key": "Frequency Map: Compare character counts between two strings." },
-                    { "name": "Longest Substring Without Repeating", "url": "https://leetcode.com/problems/longest-substring-without-repeating-characters/", "logic_key": "Sliding Window: Use a map to track character indices." },
-                    { "name": "Group Anagrams", "url": "https://leetcode.com/problems/group-anagrams/", "logic_key": "HashMap: Use sorted strings or char-count tuples as keys." },
-                    { "name": "Minimum Window Substring", "url": "https://leetcode.com/problems/minimum-window-substring/", "logic_key": "Sliding Window: Expand right until valid; contract left for smallest." },
-                    { "name": "Implement strStr / KMP", "url": "https://leetcode.com/problems/find-the-index-of-the-first-occurrence-in-a-string/", "logic_key": "KMP: Use a partial match table to avoid redundant comparisons." },
-                    { "name": "Count and Say", "url": "https://leetcode.com/problems/count-and-say/", "logic_key": "Simulation: Generate sequence terms by counting consecutive groups." }
-                ]
-            },
-            {
-                "week": 4,
-                "title": "Linked List",
-                "key_topics": ["Fast/Slow Pointers", "Reversal", "Cycle Detection"],
-                "problems": [
-                    { "name": "Reverse Linked List", "url": "https://leetcode.com/problems/reverse-linked-list/", "logic_key": "Iteration: Update node next-pointers backward." },
-                    { "name": "Middle of the Linked List", "url": "https://leetcode.com/problems/middle-of-the-linked-list/", "logic_key": "Two Pointer: Slow move 1x, Fast moves 2x." },
-                    { "name": "Merge Two Sorted Lists", "url": "https://leetcode.com/problems/merge-two-sorted-lists/", "logic_key": "Iteration: Use a dummy head and compare current nodes." },
-                    { "name": "Remove Nth Node from End", "url": "https://leetcode.com/problems/remove-nth-node-from-end-of-list/", "logic_key": "Two Pointer: Maintain a gap of N between two pointers." },
-                    { "name": "Intersection of Two Lists", "url": "https://leetcode.com/problems/intersection-of-two-linked-lists/", "logic_key": "Two Pointer: Align start positions by traveling both lists." },
-                    { "name": "Palindrome Linked List", "url": "https://leetcode.com/problems/palindrome-linked-list/", "logic_key": "Fast/Slow: Find middle, reverse second half, compare." }
-                ]
-            },
-            {
-                "week": 5,
-                "title": "Stacks & Queues",
-                "key_topics": ["Monotonic Stack", "Next Greater Element", "Simulation"],
-                "problems": [
-                    { "name": "Valid Parentheses", "url": "https://leetcode.com/problems/valid-parentheses/", "logic_key": "Stack: Push opening brackets and pop to match closing." },
-                    { "name": "Min Stack", "url": "https://leetcode.com/problems/min-stack/", "logic_key": "Two Stacks: Main stack and a helper stack for current minimums." },
-                    { "name": "Next Greater Element", "url": "https://leetcode.com/problems/next-greater-element-i/", "logic_key": "Monotonic Stack: Track elements seeking their next larger value." },
-                    { "name": "Daily Temperatures", "url": "https://leetcode.com/problems/daily-temperatures/", "logic_key": "Monotonic Stack: Store indices and pop when warmer is found." },
-                    { "name": "Implement Queue using Stack", "url": "https://leetcode.com/problems/implement-queue-using-stacks/", "logic_key": "Two Stacks: Use one for pushing and one for popping." },
-                    { "name": "Evaluate Reverse Polish Notation", "url": "https://leetcode.com/problems/evaluate-reverse-polish-notation/", "logic_key": "Stack: Push numbers; pop two for every operator." },
-                    { "name": "Largest Rectangle in Histogram", "url": "https://leetcode.com/problems/largest-rectangle-in-histogram/", "logic_key": "Monotonic Stack: Track bar heights to calculate areas." }
-                ]
-            },
-            {
-                "week": 6,
-                "title": "Trees (Binary & BST)",
-                "key_topics": ["Traversals", "BFS / DFS", "LCA", "BST"],
-                "problems": [
-                    { "name": "Maximum Depth of Binary Tree", "url": "https://leetcode.com/problems/maximum-depth-of-binary-tree/", "logic_key": "DFS: Depth is 1 + max(left_child, right_child)." },
-                    { "name": "Diameter of Binary Tree", "url": "https://leetcode.com/problems/diameter-of-binary-tree/", "logic_key": "DFS: Height logic but update diameter as (L + R)." },
-                    { "name": "Symmetric Tree", "url": "https://leetcode.com/problems/symmetric-tree/", "logic_key": "Recursion: Check mirror symmetry between left/right children." },
-                    { "name": "Level Order Traversal", "url": "https://leetcode.com/problems/binary-tree-level-order-traversal/", "logic_key": "BFS: Use a queue to collect values for each horizontal level." },
-                    { "name": "Lowest Common Ancestor (LCA)", "url": "https://leetcode.com/problems/lowest-common-ancestor-of-a-binary-tree/", "logic_key": "Recursion: Find where nodes p and q diverge." },
-                    { "name": "Validate Binary Search Tree", "url": "https://leetcode.com/problems/validate-binary-search-tree/", "logic_key": "Inorder: A BST is valid if traversal is strictly increasing." },
-                    { "name": "Construct Tree from Traversal", "url": "https://leetcode.com/problems/construct-binary-tree-from-preorder-and-inorder-traversal/", "logic_key": "Recursion: Split subtrees using preorder roots." }
-                ]
-            },
-            {
-                "week": 7,
-                "title": "Recursion & Backtracking",
-                "key_topics": ["Permutations", "Subsets", "Combinations"],
-                "problems": [
-                    { "name": "Subsets", "url": "https://leetcode.com/problems/subsets/", "logic_key": "Backtracking: Decision tree for including every element." },
-                    { "name": "Combination Sum", "url": "https://leetcode.com/problems/combination-sum/", "logic_key": "Backtracking: Recursively sum numbers until target is hit." },
-                    { "name": "Permutations", "url": "https://leetcode.com/problems/permutations/", "logic_key": "Backtracking: Swap elements to generate all arrangements." },
-                    { "name": "Sudoku Solver", "url": "https://leetcode.com/problems/sudoku-solver/", "logic_key": "Backtracking: Try 1-9 and revert if config is invalid." },
-                    { "name": "N-Queens", "url": "https://leetcode.com/problems/n-queens/", "logic_key": "Backtracking: Place row by row checking col/diagonal safety." },
-                    { "name": "Rat in Maze", "url": "https://www.geeksforgeeks.org/problems/rat-in-a-maze-problem/1", "logic_key": "Backtracking: Move (D,L,R,U) and mark visited paths." },
-                    { "name": "Word Search", "url": "https://leetcode.com/problems/word-search/", "logic_key": "DFS: Search adjacent grid cells for character matches." }
-                ]
-            },
-            {
-                "week": 8,
-                "title": "DP & Graphs (Intro)",
-                "key_topics": ["Memoization", "BFS/DFS of Graph", "Topological Sort"],
-                "problems": [
-                    { "name": "Climbing Stairs", "url": "https://leetcode.com/problems/climbing-stairs/", "logic_key": "DP: ways(n) = ways(n-1) + ways(n-2)." },
-                    { "name": "House Robber", "url": "https://leetcode.com/problems/house-robber/", "logic_key": "DP: Decide to rob current house or skip it." },
-                    { "name": "Coin Change", "url": "https://leetcode.com/problems/coin-change/", "logic_key": "DP: Min coins for every amount up to target." },
-                    { "name": "Longest Increasing Subsequence", "url": "https://leetcode.com/problems/longest-increasing-subsequence/", "logic_key": "DP: Compare element with previous elements to build LIS." },
-                    { "name": "0/1 Knapsack / Subset Sum", "url": "https://leetcode.com/problems/partition-equal-subset-sum/", "logic_key": "DP: Check if target sum can be formed by numbers." },
-                    { "name": "BFS / DFS of Graph", "url": "https://leetcode.com/problems/all-paths-from-source-to-target/", "logic_key": "Traversal: Visit all nodes connected to current." },
-                    { "name": "Number of Islands", "url": "https://leetcode.com/problems/number-of-islands/", "logic_key": "DFS: Treat '1's as nodes; sink island once visited." },
-                    { "name": "Detect Cycle in Graph", "url": "https://leetcode.com/problems/course-schedule/", "logic_key": "Graph: Detect back-edges using recursion stack in DFS." },
-                    { "name": "Topological Sort", "url": "https://leetcode.com/problems/course-schedule-ii/", "logic_key": "Kahn’s Algorithm: Sort nodes based on dependency counts." },
-                    { "name": "Dijkstra's Algorithm", "url": "https://leetcode.com/problems/network-delay-time/", "logic_key": "Greedy: Use priority queue for shortest paths." }
-                ]
-            }
-        ]
-    };
-
-    const roadmapGrid = document.getElementById('roadmap');
-
-    fullData.weeks.forEach(w => {
-        const card = document.createElement('div');
-        card.className = 'week-card';
-
-        // Parsing topics (removing tags after | if they exist in future updates)
-        const topics = w.key_topics.map(t => `<span class="topic-pill">${t.split(' |')[0]}</span>`).join('');
+<div class="container">
+    <div class="card">
+        <h2>Logic Visualizer</h2>
         
-        // Parsing problems to get clean name and logic
-        const problems = w.problems.map(p => {
-            const cleanName = p.name.split(' |')[0]; // Handles "Name |tag" -> "Name"
-            return `
-                <a href="${p.url}" target="_blank" class="problem-link">
-                    <div>
-                        <span class="p-name">${cleanName}</span>
-                        <span class="p-logic">${p.logic_key}</span>
-                    </div>
-                    <span style="color: var(--primary); font-size: 1.2rem;">→</span>
-                </a>
-            `;
-        }).join('');
+        <div class="input-section">
+            <p style="color: #64748b; margin-bottom: 10px;">Input Number</p>
+            <span>3 8 2 9 3 3 6 7</span>
+        </div>
 
-        card.innerHTML = `
-            <div class="week-badge">Week ${w.week}</div>
-            <div class="week-title">${w.title}</div>
-            <div>${topics}</div>
-            <div class="problem-list">${problems}</div>
-        `;
-        roadmapGrid.appendChild(card);
-    });
-</script>
+        <p style="font-weight: 600; margin-bottom: 15px;">Step 1: Hashed Array (The Tally)</p>
+        <div class="grid">
+            <div class="bucket"><span class="bucket-label">Digit 0</span><div class="bucket-count">0</div></div>
+            <div class="bucket"><span class="bucket-label">Digit 1</span><div class="bucket-count">0</div></div>
+            <div class="bucket active"><span class="bucket-label">Digit 2</span><div class="bucket-count">1</div></div>
+            <div class="bucket active"><span class="bucket-label">Digit 3</span><div class="bucket-count">3</div></div>
+            <div class="bucket"><span class="bucket-label">Digit 4</span><div class="bucket-count">0</div></div>
+            <div class="bucket"><span class="bucket-label">Digit 5</span><div class="bucket-count">0</div></div>
+            <div class="bucket active"><span class="bucket-label">Digit 6</span><div class="bucket-count">1</div></div>
+            <div class="bucket active"><span class="bucket-label">Digit 7</span><div class="bucket-count">1</div></div>
+            <div class="bucket active"><span class="bucket-label">Digit 8</span><div class="bucket-count">1</div></div>
+            <div class="bucket active"><span class="bucket-label">Digit 9</span><div class="bucket-count">1</div></div>
+        </div>
+
+        <p style="font-weight: 600; margin-bottom: 15px;">Step 2: Reconstructing Result</p>
+        <div class="logic-box">
+            // Starting from digit 0 up to 9:<br>
+            ...<br>
+            If digit is <span class="highlight">8</span>: result = result + (8 * 10^7)<br>
+            If digit is <span class="highlight">9</span>: result = result + (9 * 10^8)<br>
+            <hr style="border: 0; border-top: 1px solid #334155; margin: 10px 0;">
+            Final Maximum: <span class="highlight" style="font-size: 1.2rem;">98763332</span>
+        </div>
+    </div>
+</div>
 
 </body>
 </html>
