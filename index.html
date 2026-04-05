@@ -3,156 +3,142 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>DSA Mastery Roadmap</title>
+    <title>DSA Roadmap | Light Grid</title>
     <link rel="preconnect" href="https://fonts.googleapis.com">
-    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;600;800&display=swap" rel="stylesheet">
+    <link href="https://fonts.googleapis.com/css2?family=Plus+Jakarta+Sans:wght@400;600;800&display=swap" rel="stylesheet">
     <style>
         :root {
-            --bg-color: #0f172a;
-            --card-bg: rgba(30, 41, 59, 0.7);
-            --accent-primary: #38bdf8;
-            --accent-secondary: #818cf8;
-            --text-main: #f8fafc;
-            --text-dim: #94a3b8;
+            --bg-body: #f8fafc;
+            --card-bg: #ffffff;
+            --primary-blue: #2563eb;
+            --text-dark: #1e293b;
+            --text-muted: #64748b;
+            --shadow: 0 10px 15px -3px rgba(0, 0, 0, 0.05), 0 4px 6px -2px rgba(0, 0, 0, 0.02);
+            --border: #e2e8f0;
         }
 
         body {
-            font-family: 'Inter', sans-serif;
-            background-color: var(--bg-color);
-            background-image: 
-                radial-gradient(at 0% 0%, rgba(56, 189, 248, 0.15) 0px, transparent 50%),
-                radial-gradient(at 100% 100%, rgba(129, 140, 248, 0.15) 0px, transparent 50%);
-            color: var(--text-main);
+            font-family: 'Plus Jakarta Sans', sans-serif;
+            background-color: var(--bg-body);
+            color: var(--text-dark);
             margin: 0;
-            padding: 40px 20px;
-            line-height: 1.6;
+            padding: 50px 20px;
         }
 
         .container {
-            max-width: 1000px;
+            max-width: 1100px;
             margin: 0 auto;
         }
 
         header {
             text-align: center;
-            margin-bottom: 60px;
+            margin-bottom: 50px;
         }
 
         h1 {
-            font-size: 3rem;
+            font-size: 2.5rem;
             font-weight: 800;
-            background: linear-gradient(to right, var(--accent-primary), var(--accent-secondary));
-            -webkit-background-clip: text;
-            -webkit-text-fill-color: transparent;
-            margin-bottom: 10px;
+            color: var(--text-dark);
+            letter-spacing: -0.02em;
         }
 
-        p.subtitle {
-            color: var(--text-dim);
-            font-size: 1.1rem;
+        /* The 2-Column Grid */
+        #roadmap {
+            display: grid;
+            grid-template-columns: repeat(2, 1fr);
+            gap: 25px;
         }
 
         .week-card {
             background: var(--card-bg);
-            backdrop-filter: blur(12px);
-            -webkit-backdrop-filter: blur(12px);
-            border: 1px solid rgba(255, 255, 255, 0.1);
-            border-radius: 24px;
-            padding: 30px;
-            margin-bottom: 40px;
-            transition: transform 0.3s ease, border-color 0.3s ease;
+            border: 1px solid var(--border);
+            border-radius: 20px;
+            padding: 25px;
+            box-shadow: var(--shadow);
+            transition: transform 0.2s ease, box-shadow 0.2s ease;
+            display: flex;
+            flex-direction: column;
         }
 
         .week-card:hover {
-            transform: translateY(-5px);
-            border-color: rgba(56, 189, 248, 0.4);
+            transform: translateY(-4px);
+            box-shadow: 0 20px 25px -5px rgba(0, 0, 0, 0.1);
         }
 
-        .week-header {
-            display: flex;
-            align-items: center;
-            gap: 15px;
-            margin-bottom: 20px;
-        }
-
-        .week-number {
-            background: linear-gradient(135deg, var(--accent-primary), var(--accent-secondary));
-            color: white;
-            font-weight: bold;
-            padding: 5px 15px;
-            border-radius: 12px;
-            font-size: 0.9rem;
+        .week-tag {
+            font-size: 0.75rem;
+            font-weight: 700;
             text-transform: uppercase;
+            color: var(--primary-blue);
+            background: #eff6ff;
+            padding: 4px 12px;
+            border-radius: 100px;
+            width: fit-content;
+            margin-bottom: 12px;
         }
 
         .week-title {
-            font-size: 1.8rem;
+            font-size: 1.4rem;
             font-weight: 700;
+            margin-bottom: 15px;
         }
 
-        .topics-container {
-            display: flex;
-            flex-wrap: wrap;
-            gap: 10px;
-            margin-bottom: 25px;
-        }
-
-        .topic-tag {
-            background: rgba(56, 189, 248, 0.1);
-            color: var(--accent-primary);
-            border: 1px solid rgba(56, 189, 248, 0.2);
-            padding: 4px 12px;
-            border-radius: 20px;
-            font-size: 0.85rem;
-            font-weight: 500;
-        }
-
-        .problem-list {
-            display: grid;
-            gap: 15px;
-        }
-
-        .problem-item {
-            background: rgba(255, 255, 255, 0.03);
-            border-radius: 16px;
-            padding: 20px;
-            border: 1px solid transparent;
-            transition: all 0.2s ease;
-            text-decoration: none;
-            color: inherit;
-            display: block;
-        }
-
-        .problem-item:hover {
-            background: rgba(255, 255, 255, 0.07);
-            border-color: rgba(255, 255, 255, 0.1);
-        }
-
-        .problem-name {
-            color: var(--accent-primary);
-            font-weight: 600;
-            font-size: 1.1rem;
-            display: block;
+        .topic-pill {
+            display: inline-block;
+            font-size: 0.8rem;
+            background: #f1f5f9;
+            color: var(--text-muted);
+            padding: 3px 10px;
+            border-radius: 6px;
+            margin-right: 5px;
             margin-bottom: 5px;
         }
 
-        .problem-logic {
-            font-size: 0.9rem;
-            color: var(--text-dim);
-            font-style: italic;
+        .problem-container {
+            margin-top: 20px;
+            border-top: 1px solid var(--border);
+            padding-top: 15px;
         }
 
-        footer {
-            text-align: center;
-            margin-top: 80px;
-            color: var(--text-dim);
-            font-size: 0.9rem;
+        .problem-link {
+            display: flex;
+            align-items: center;
+            justify-content: space-between;
+            text-decoration: none;
+            padding: 10px;
+            border-radius: 10px;
+            margin-bottom: 8px;
+            background: #fafafa;
+            border: 1px solid transparent;
+            transition: all 0.2s;
         }
 
-        @media (max-width: 600px) {
-            h1 { font-size: 2rem; }
-            .week-title { font-size: 1.4rem; }
+        .problem-link:hover {
+            background: #fdfdfd;
+            border-color: var(--primary-blue);
+        }
+
+        .problem-info span {
+            display: block;
+        }
+
+        .p-name {
+            font-weight: 600;
+            color: var(--text-dark);
+            font-size: 0.95rem;
+        }
+
+        .p-logic {
+            font-size: 0.8rem;
+            color: var(--text-muted);
+            margin-top: 2px;
+        }
+
+        /* Responsive: Stack columns on smaller screens */
+        @media (max-width: 850px) {
+            #roadmap {
+                grid-template-columns: 1fr;
+            }
         }
     </style>
 </head>
@@ -160,133 +146,117 @@
 
 <div class="container">
     <header>
-        <h1>8-Week DSA Journey</h1>
-        <p class="subtitle">Mastering Algorithms & Data Structures, step by step.</p>
+        <h1>DSA Mastery Roadmap</h1>
+        <p style="color: var(--text-muted)">A structured 8-week guide to technical proficiency.</p>
     </header>
 
     <div id="roadmap">
         </div>
-
-    <footer>
-        <p>Built for personal growth. Happy Coding!</p>
-    </footer>
 </div>
 
 <script>
+    // Using the data from your previous JSON
     const data = {
       "weeks": [
-          {
-              "week": 1,
-              "title": "Arrays & Basic Hashing",
-              "key_topics": ["Prefix Sum", "Two Pointer Technique", "Sliding Window", "HashMap-based Problems"],
-              "problems": [
-                  { "name": "Two Sum", "url": "https://leetcode.com/problems/two-sum/", "logic_key": "HashMap: Find the complement target - x in O(1) lookup time." },
-                  { "name": "Best Time to Buy and Sell Stock", "url": "https://leetcode.com/problems/best-time-to-buy-and-sell-stock/", "logic_key": "Two Pointer / Greedy: Track minPrice and update maxProfit in one pass." },
-                  { "name": "Kadane's Algorithm", "url": "https://leetcode.com/problems/maximum-subarray/", "logic_key": "Prefix Logic: Decide to extend the subarray or restart." },
-                  { "name": "Subarray Sum Equals K", "url": "https://leetcode.com/problems/subarray-sum-equals-k/", "logic_key": "Prefix Sum + HashMap: Find sub-arrays where prefixSum - k exists." },
-                  { "name": "Longest Substring Without Repeating Characters", "url": "https://leetcode.com/problems/longest-substring-without-repeating-characters/", "logic_key": "Sliding Window + HashMap: Use two pointers and a map for O(n) sliding." },
-                  { "name": "Product of Array Except Self", "url": "https://leetcode.com/problems/product-of-array-except-self/", "logic_key": "Prefix/Suffix: Use two passes to compute left and right products." }
-              ]
-          },
-          {
-              "week": 2,
-              "title": "Sorting & Searching",
-              "key_topics": ["Binary Search on Answer", "Custom Sorting", "Search Space Problems"],
-              "problems": [
-                  { "name": "Binary Search", "url": "https://leetcode.com/problems/binary-search/", "logic_key": "Classic: Divide and conquer the sorted search space in O(log n)." },
-                  { "name": "Find First and Last Position", "url": "https://leetcode.com/problems/find-first-and-last-position-of-element-in-sorted-array/", "logic_key": "Binary Search: Perform two searches for boundaries." },
-                  { "name": "Search in Rotated Sorted Array", "url": "https://leetcode.com/problems/search-in-rotated-sorted-array/", "logic_key": "Binary Search: Determine which half is sorted to find target." },
-                  { "name": "Aggressive Cows / Allocate Books", "url": "https://www.geeksforgeeks.org/problems/aggressive-cows/1", "logic_key": "Binary Search on Answer: Search range and validate greedily." }
-              ]
-          },
-          {
-              "week": 3,
-              "title": "Strings",
-              "key_topics": ["Sliding Window", "HashMap Counting", "Palindromes & Anagrams"],
-              "problems": [
-                  { "name": "Valid Anagram", "url": "https://leetcode.com/problems/valid-anagram/", "logic_key": "Frequency Map: Compare character counts between strings." },
-                  { "name": "Group Anagrams", "url": "https://leetcode.com/problems/group-anagrams/", "logic_key": "HashMap: Use sorted strings or counts as keys." },
-                  { "name": "Minimum Window Substring", "url": "https://leetcode.com/problems/minimum-window-substring/", "logic_key": "Sliding Window: Expand right until valid; contract left for smallest." }
-              ]
-          },
-          {
-              "week": 4,
-              "title": "Linked List",
-              "key_topics": ["Fast/Slow Pointers", "Reversal", "Cycle Detection"],
-              "problems": [
-                  { "name": "Reverse Linked List", "url": "https://leetcode.com/problems/reverse-linked-list/", "logic_key": "Iteration: Update node next-pointers to point backward." },
-                  { "name": "Middle of the Linked List", "url": "https://leetcode.com/problems/middle-of-the-linked-list/", "logic_key": "Two Pointer: Fast moves 2x, Slow moves 1x." },
-                  { "name": "Palindrome Linked List", "url": "https://leetcode.com/problems/palindrome-linked-list/", "logic_key": "Fast/Slow + Reversal: Compare first and second half." }
-              ]
-          },
-          {
-              "week": 5,
-              "title": "Stacks & Queues",
-              "key_topics": ["Monotonic Stack", "Next Greater Element", "Simulation"],
-              "problems": [
-                  { "name": "Valid Parentheses", "url": "https://leetcode.com/problems/valid-parentheses/", "logic_key": "Stack: Push openers and pop to match with closers." },
-                  { "name": "Daily Temperatures", "url": "https://leetcode.com/problems/daily-temperatures/", "logic_key": "Monotonic Stack: Store indices to find next warmer day." },
-                  { "name": "Largest Rectangle in Histogram", "url": "https://leetcode.com/problems/largest-rectangle-in-histogram/", "logic_key": "Monotonic Stack: Calculate areas based on limiting boundaries." }
-              ]
-          },
-          {
-              "week": 6,
-              "title": "Trees (Binary & BST)",
-              "key_topics": ["Traversals", "Height/Diameter", "BFS / DFS"],
-              "problems": [
-                  { "name": "Maximum Depth", "url": "https://leetcode.com/problems/maximum-depth-of-binary-tree/", "logic_key": "DFS: Depth is 1 + max(left, right)." },
-                  { "name": "Level Order Traversal", "url": "https://leetcode.com/problems/binary-tree-level-order-traversal/", "logic_key": "BFS: Use a queue for horizontal level values." },
-                  { "name": "Validate BST", "url": "https://leetcode.com/problems/validate-binary-search-tree/", "logic_key": "Inorder Traversal: BST must be strictly increasing." }
-              ]
-          },
-          {
-              "week": 7,
-              "title": "Recursion & Backtracking",
-              "key_topics": ["Permutations", "Subsets", "Combinations"],
-              "problems": [
-                  { "name": "Subsets", "url": "https://leetcode.com/problems/subsets/", "logic_key": "Backtracking: Decide whether to include each element." },
-                  { "name": "N-Queens", "url": "https://leetcode.com/problems/n-queens/", "logic_key": "Backtracking: Place queens row by row with safety checks." },
-                  { "name": "Word Search", "url": "https://leetcode.com/problems/word-search/", "logic_key": "DFS: Search adjacent cells for character matches." }
-              ]
-          },
-          {
-              "week": 8,
-              "title": "DP & Graphs",
-              "key_topics": ["Memoization", "Topological Sort", "Shortest Path"],
-              "problems": [
-                  { "name": "Climbing Stairs", "url": "https://leetcode.com/problems/climbing-stairs/", "logic_key": "DP: Simple Fibonacci-based state transition." },
-                  { "name": "Number of Islands", "url": "https://leetcode.com/problems/number-of-islands/", "logic_key": "DFS: Traverse and 'sink' visited land nodes." },
-                  { "name": "Topological Sort", "url": "https://leetcode.com/problems/course-schedule-ii/", "logic_key": "Kahn’s Algorithm: Sort nodes by dependency count." }
-              ]
-          }
+        {
+          "week": 1,
+          "title": "Arrays & Basic Hashing",
+          "topics": ["Prefix Sum", "Two Pointer", "Sliding Window"],
+          "problems": [
+            { "name": "Two Sum", "url": "https://leetcode.com/problems/two-sum/", "logic": "HashMap complement lookup." },
+            { "name": "Kadane's Algorithm", "url": "https://leetcode.com/problems/maximum-subarray/", "logic": "Local vs Global Max." }
+          ]
+        },
+        {
+          "week": 2,
+          "title": "Sorting & Searching",
+          "topics": ["Binary Search", "Custom Sort"],
+          "problems": [
+            { "name": "Search in Rotated Array", "url": "https://leetcode.com/problems/search-in-rotated-sorted-array/", "logic": "Modified Binary Search." },
+            { "name": "Aggressive Cows", "url": "https://www.geeksforgeeks.org/problems/aggressive-cows/1", "logic": "BS on Answer space." }
+          ]
+        },
+        {
+          "week": 3,
+          "title": "Strings",
+          "topics": ["Sliding Window", "Anagrams"],
+          "problems": [
+            { "name": "Valid Anagram", "url": "https://leetcode.com/problems/valid-anagram/", "logic": "Frequency array/map." },
+            { "name": "Group Anagrams", "url": "https://leetcode.com/problems/group-anagrams/", "logic": "Sorted key mapping." }
+          ]
+        },
+        {
+          "week": 4,
+          "title": "Linked List",
+          "topics": ["Fast/Slow", "Reversal"],
+          "problems": [
+            { "name": "Reverse List", "url": "https://leetcode.com/problems/reverse-linked-list/", "logic": "Pointer manipulation." },
+            { "name": "Cycle Detection", "url": "https://leetcode.com/problems/linked-list-cycle/", "logic": "Floyd's algorithm." }
+          ]
+        },
+        {
+          "week": 5,
+          "title": "Stacks & Queues",
+          "topics": ["Monotonic Stack", "Simulation"],
+          "problems": [
+            { "name": "Valid Parentheses", "url": "https://leetcode.com/problems/valid-parentheses/", "logic": "Standard LIFO check." },
+            { "name": "Next Greater Element", "url": "https://leetcode.com/problems/next-greater-element-i/", "logic": "Monotonic decrease." }
+          ]
+        },
+        {
+          "week": 6,
+          "title": "Trees (Binary & BST)",
+          "topics": ["BFS/DFS", "Height/Diameter"],
+          "problems": [
+            { "name": "Max Depth", "url": "https://leetcode.com/problems/maximum-depth-of-binary-tree/", "logic": "Recursive height calc." },
+            { "name": "Validate BST", "url": "https://leetcode.com/problems/validate-binary-search-tree/", "logic": "Range constraints." }
+          ]
+        },
+        {
+          "week": 7,
+          "title": "Backtracking",
+          "topics": ["Permutations", "Subsets"],
+          "problems": [
+            { "name": "Subsets", "url": "https://leetcode.com/problems/subsets/", "logic": "Power set generation." },
+            { "name": "N-Queens", "url": "https://leetcode.com/problems/n-queens/", "logic": "Recursive placement." }
+          ]
+        },
+        {
+          "week": 8,
+          "title": "DP & Graphs",
+          "topics": ["Memoization", "Shortest Path"],
+          "problems": [
+            { "name": "Climbing Stairs", "url": "https://leetcode.com/problems/climbing-stairs/", "logic": "Fibonacci state." },
+            { "name": "Number of Islands", "url": "https://leetcode.com/problems/number-of-islands/", "logic": "Connected components." }
+          ]
+        }
       ]
     };
 
-    const roadmapContainer = document.getElementById('roadmap');
+    const roadmapGrid = document.getElementById('roadmap');
 
-    data.weeks.forEach(week => {
-        const weekEl = document.createElement('div');
-        weekEl.className = 'week-card';
+    data.weeks.forEach(w => {
+      const card = document.createElement('div');
+      card.className = 'week-card';
 
-        let topicsHtml = week.key_topics.map(t => `<span class="topic-tag">${t.split('|')[0]}</span>`).join('');
-        
-        let problemsHtml = week.problems.map(p => `
-            <a href="${p.url}" target="_blank" class="problem-item">
-                <span class="problem-name">${p.name.split('|')[0]}</span>
-                <span class="problem-logic">${p.logic_key}</span>
-            </a>
-        `).join('');
+      const topicsHtml = w.topics.map(t => `<span class="topic-pill">${t}</span>`).join('');
+      const problemsHtml = w.problems.map(p => `
+        <a href="${p.url}" target="_blank" class="problem-link">
+          <div class="problem-info">
+            <span class="p-name">${p.name}</span>
+            <span class="p-logic">${p.logic}</span>
+          </div>
+          <span style="color: var(--primary-blue)">→</span>
+        </a>
+      `).join('');
 
-        weekEl.innerHTML = `
-            <div class="week-header">
-                <span class="week-number">Week ${week.week}</span>
-                <div class="week-title">${week.title}</div>
-            </div>
-            <div class="topics-container">${topicsHtml}</div>
-            <div class="problem-list">${problemsHtml}</div>
-        `;
-        
-        roadmapContainer.appendChild(weekEl);
+      card.innerHTML = `
+        <div class="week-tag">Week ${w.week}</div>
+        <div class="week-title">${w.title}</div>
+        <div>${topicsHtml}</div>
+        <div class="problem-container">${problemsHtml}</div>
+      `;
+      roadmapGrid.appendChild(card);
     });
 </script>
 
