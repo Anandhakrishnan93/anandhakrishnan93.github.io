@@ -3,7 +3,7 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>DSA & System Design Roadmap</title>
+    <title>Engineering Mastery Blueprint</title>
     <link rel="preconnect" href="https://fonts.googleapis.com">
     <link href="https://fonts.googleapis.com/css2?family=Plus+Jakarta+Sans:wght@400;500;600;700;800&display=swap" rel="stylesheet">
     <style>
@@ -75,13 +75,9 @@
             margin: 0 auto;
         }
 
-        /* System Design Section Styles */
         .sys-design-container {
             max-width: 1200px;
             margin: 0 auto 100px;
-            display: grid;
-            grid-template-columns: repeat(auto-fit, minmax(350px, 1fr));
-            gap: 28px;
         }
 
         .week-card {
@@ -157,7 +153,7 @@
         .arrow { color: var(--primary); font-weight: 800; opacity: 0.5; }
 
         @media (max-width: 950px) {
-            .roadmap-grid, .sys-design-container { grid-template-columns: 1fr; }
+            .roadmap-grid { grid-template-columns: 1fr; }
             h1 { font-size: 2.4rem; }
         }
     </style>
@@ -175,47 +171,28 @@
 <div class="section-title">System Design & Networking</div>
 <div class="sys-design-container">
     <div class="week-card">
-        <div class="week-badge sys-badge">Advanced Networking</div>
-        <div class="week-title">Resiliency Patterns</div>
+        <div class="week-badge sys-badge">Core Architecture</div>
+        <div class="week-title">Reliability & Performance</div>
         <div class="problem-list">
             <a href="https://github.com/Anandhakrishnan93/_Exponential_BackOff_Network_" target="_blank" class="problem-link">
                 <div style="flex: 1">
                     <span class="p-name">Exponential Backoff Strategy</span>
-                    <span class="p-logic">Network reliability logic: Increasing wait intervals to handle congestion and collision in distributed systems.</span>
+                    <span class="p-logic">Network resiliency: Managing retries with increasing delay to handle server congestion and thundering herd issues.</span>
                 </div>
                 <span class="arrow">→</span>
             </a>
-            <div class="problem-link" style="opacity: 0.7; cursor: default;">
+            <a href="https://github.com/Anandhakrishnan93/_LRU_Cache_Swift_" target="_blank" class="problem-link">
                 <div style="flex: 1">
-                    <span class="p-name">Circuit Breaker Pattern</span>
-                    <span class="p-logic">Preventing cascading failures by failing fast when a remote service is struggling.</span>
+                    <span class="p-name">LRU Cache Implementation</span>
+                    <span class="p-logic">Resource management: O(1) time complexity for eviction and retrieval using Doubly Linked Lists and HashMaps.</span>
                 </div>
-            </div>
-        </div>
-    </div>
-
-    <div class="week-card">
-        <div class="week-badge sys-badge">Scalability</div>
-        <div class="week-title">Core Architecture</div>
-        <div class="problem-list">
-            <div class="problem-link" style="opacity: 0.7; cursor: default;">
-                <div style="flex: 1">
-                    <span class="p-name">Load Balancing & Sharding</span>
-                    <span class="p-logic">Distributing traffic and horizontal partitioning of large databases.</span>
-                </div>
-            </div>
-            <div class="problem-link" style="opacity: 0.7; cursor: default;">
-                <div style="flex: 1">
-                    <span class="p-name">Caching Strategies</span>
-                    <span class="p-logic">LRU Cache, Write-through vs Write-back, and Content Delivery Networks (CDN).</span>
-                </div>
-            </div>
+                <span class="arrow">→</span>
+            </a>
         </div>
     </div>
 </div>
 
 <script>
-    // [The existing JS fullData object and loop remains exactly the same]
     const fullData = {
         "weeks": [
             {
