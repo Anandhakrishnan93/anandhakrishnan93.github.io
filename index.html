@@ -3,7 +3,7 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>DSA 8 Weeks RoadMap</title>
+    <title>DSA & System Design Roadmap</title>
     <link rel="preconnect" href="https://fonts.googleapis.com">
     <link href="https://fonts.googleapis.com/css2?family=Plus+Jakarta+Sans:wght@400;500;600;700;800&display=swap" rel="stylesheet">
     <style>
@@ -15,6 +15,7 @@
             --text-main: #1e293b;
             --text-muted: #64748b;
             --border: rgba(226, 232, 240, 0.8);
+            --accent-blue: #3b82f6;
         }
 
         body {
@@ -47,12 +48,40 @@
             font-weight: 500;
         }
 
+        .section-title {
+            max-width: 1200px;
+            margin: 60px auto 30px;
+            color: #ffffff;
+            font-size: 2rem;
+            font-weight: 800;
+            display: flex;
+            align-items: center;
+            gap: 15px;
+        }
+
+        .section-title::after {
+            content: "";
+            height: 2px;
+            background: var(--primary);
+            flex: 1;
+            opacity: 0.3;
+        }
+
         .roadmap-grid {
             display: grid;
             grid-template-columns: repeat(2, 1fr);
             gap: 28px;
             max-width: 1200px;
             margin: 0 auto;
+        }
+
+        /* System Design Section Styles */
+        .sys-design-container {
+            max-width: 1200px;
+            margin: 0 auto 100px;
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(350px, 1fr));
+            gap: 28px;
         }
 
         .week-card {
@@ -67,20 +96,7 @@
             transition: transform 0.3s ease;
         }
 
-        .week-card:hover {
-            transform: translateY(-5px);
-        }
-
-        .week-card::after {
-            content: attr(data-week);
-            position: absolute;
-            top: -15px;
-            right: -5px;
-            font-size: 7rem;
-            font-weight: 900;
-            color: rgba(16, 185, 129, 0.04);
-            pointer-events: none;
-        }
+        .week-card:hover { transform: translateY(-5px); }
 
         .week-badge {
             background: var(--primary);
@@ -93,41 +109,18 @@
             width: fit-content;
             margin-bottom: 16px;
             letter-spacing: 1px;
-            z-index: 1;
         }
+
+        .sys-badge { background: var(--accent-blue); }
 
         .week-title {
             font-size: 1.6rem;
             font-weight: 800;
             margin-bottom: 18px;
             color: var(--primary-dark);
-            z-index: 1;
         }
 
-        .topic-container {
-            display: flex;
-            flex-wrap: wrap;
-            gap: 6px;
-            margin-bottom: 24px;
-            z-index: 1;
-        }
-
-        .topic-pill {
-            background: #f1f5f9;
-            color: #475569;
-            padding: 5px 12px;
-            border-radius: 10px;
-            font-size: 0.8rem;
-            font-weight: 600;
-            border: 1px solid var(--border);
-        }
-
-        .problem-list {
-            display: flex;
-            flex-direction: column;
-            gap: 10px;
-            z-index: 1;
-        }
+        .problem-list { display: flex; flex-direction: column; gap: 10px; }
 
         .problem-link {
             display: flex;
@@ -152,7 +145,6 @@
             color: var(--text-main);
             font-size: 0.95rem;
             display: block;
-            margin-bottom: 3px;
         }
 
         .p-logic {
@@ -162,20 +154,10 @@
             display: block;
         }
 
-        .arrow {
-            color: var(--primary);
-            font-weight: 800;
-            margin-left: 10px;
-            opacity: 0.5;
-            transition: opacity 0.2s;
-        }
-
-        .problem-link:hover .arrow {
-            opacity: 1;
-        }
+        .arrow { color: var(--primary); font-weight: 800; opacity: 0.5; }
 
         @media (max-width: 950px) {
-            .roadmap-grid { grid-template-columns: 1fr; }
+            .roadmap-grid, .sys-design-container { grid-template-columns: 1fr; }
             h1 { font-size: 2.4rem; }
         }
     </style>
@@ -183,13 +165,57 @@
 <body>
 
 <div class="header">
-    <h1>DSA Mastery Blueprint</h1>
-    <p>Complete 8-Week Professional Curriculum</p>
+    <h1>Engineering Mastery Blueprint</h1>
+    <p>Data Structures, Algorithms & System Design Curriculum</p>
 </div>
 
+<div class="section-title">DSA Roadmap</div>
 <div class="roadmap-grid" id="roadmap"></div>
 
+<div class="section-title">System Design & Networking</div>
+<div class="sys-design-container">
+    <div class="week-card">
+        <div class="week-badge sys-badge">Advanced Networking</div>
+        <div class="week-title">Resiliency Patterns</div>
+        <div class="problem-list">
+            <a href="https://github.com/Anandhakrishnan93/_Exponential_BackOff_Network_" target="_blank" class="problem-link">
+                <div style="flex: 1">
+                    <span class="p-name">Exponential Backoff Strategy</span>
+                    <span class="p-logic">Network reliability logic: Increasing wait intervals to handle congestion and collision in distributed systems.</span>
+                </div>
+                <span class="arrow">→</span>
+            </a>
+            <div class="problem-link" style="opacity: 0.7; cursor: default;">
+                <div style="flex: 1">
+                    <span class="p-name">Circuit Breaker Pattern</span>
+                    <span class="p-logic">Preventing cascading failures by failing fast when a remote service is struggling.</span>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <div class="week-card">
+        <div class="week-badge sys-badge">Scalability</div>
+        <div class="week-title">Core Architecture</div>
+        <div class="problem-list">
+            <div class="problem-link" style="opacity: 0.7; cursor: default;">
+                <div style="flex: 1">
+                    <span class="p-name">Load Balancing & Sharding</span>
+                    <span class="p-logic">Distributing traffic and horizontal partitioning of large databases.</span>
+                </div>
+            </div>
+            <div class="problem-link" style="opacity: 0.7; cursor: default;">
+                <div style="flex: 1">
+                    <span class="p-name">Caching Strategies</span>
+                    <span class="p-logic">LRU Cache, Write-through vs Write-back, and Content Delivery Networks (CDN).</span>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+
 <script>
+    // [The existing JS fullData object and loop remains exactly the same]
     const fullData = {
         "weeks": [
             {
